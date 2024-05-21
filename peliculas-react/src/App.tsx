@@ -23,6 +23,20 @@ function App() {
   const [listadoState, setListadoState] = useState([]);
   const [inicioSesion, setInicioSesion] = useState(false);
 
+  const usuarioSesion = {
+    nombre: '',
+    nickname: ''
+  }
+
+  const inicioDeSesion = (e) => {
+
+    let target = e.target;
+    let valorTarget = target.value;
+    
+    console.log(valorTarget);
+
+  };
+
   return (
     <>
       <div className="layout d-flex flex-column m-2">
@@ -31,12 +45,22 @@ function App() {
 
           <input 
             type="text"
-            placeholder=''
-            defaultValue={}
-            onChange={}
+            name='usuariosesion'
+            id='usuariosesion'
+            className='m-2 p-2 rounded-2'
+            placeholder='Usuario: '
+            defaultValue={usuarioSesion.nombre}
+            onChange={inicioDeSesion}
             required 
           />
+          {usuarioSesion.nombre.length >= 2  && (
+            <span
+              className='m-3 p-3'
+            >Usuario incorrecto</span>
+          )}
+
           <button
+            className='m-2 p-2'
             onClick={() => inicioDeSesion(true)}
           >
             <img src={usuarioIcono} className='m-2 p-2' />
