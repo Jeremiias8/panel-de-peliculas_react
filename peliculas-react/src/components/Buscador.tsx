@@ -1,54 +1,72 @@
 import { useState } from "react"
 
 export const Buscador = ({
-    conseguirPelis, titulo, setListadoState
+    listadoState, setListadoState
 }) => {
 
-    const [valorInput, setValorInput] = useState();
+    const [busqueda, setBusqueda] = useState('');
+
+    const buscador = "Buscador: ";
 
     const buscarPeli = (e) => {
+        
         e.preventDefault();
-        let target = e.target;
+        // let target = e.target;
 
         // crear estado y actualizarlo
-        setValorInput(target.busqueda.value);
-
-        // listado completo de películas
-        conseguirPelis(valorInput);
+        setBusqueda(e.target.value);
+        console.log(busqueda);
 
         // filtrar para buscar coincidencias
-        let busquedaFiltrada = valorInput.filter(valor => valor.titulo !== titulo);
-        console.log(busquedaFiltrada);
+        let busquedaFiltrada = listadoState.filter(peli => {
 
-        // comprobar si hay result
-        if (busquedaFiltrada.length > 0) {
-            setValorInput(conseguirPelis);
-        } else {
-            console.error("ERROR");
+            return peli.titulo.toLowerCase()
+                .includes(busqueda
+                .toLowerCase());
+        });
+
+        // console.log(busquedaFiltrada);
+        
+        // si el string de busqueda es menor o igual a 1, que retorne todas las pelis
+        if (busqueda.length <= 1) {
+                
+            busquedaFiltrada = JSON.parse(localStorage.getItem("pelis"));
         }
 
-        // dar value de todo en localStorage
-        localStorage.setItem("pelis", JSON.stringify(valorInput));
+        console.log(busquedaFiltrada);
 
+        {/*
         // actualizar estado del listado principal con lo filtrado
-        setListadoState(valorInput);
+        setListadoState(setBusqueda); */}
 
     }
 
   return (
     <div className="buscador__container">
+        <h3>{buscador} {busqueda}</h3>
+
         <form>
 
             <input type="search"
                 id="input_busqueda"
                 name="busqueda"
                 autoComplete="off"
-                value={valorInput} 
+                value={busqueda} 
                 onChange={buscarPeli}
                 className='form-control m-2 p-2 text-center'
                 placeholder='Busca una peli: Avatar 2' 
                 required 
             />
+
+            {busqueda.length >= 3 && (
+                <div
+                    className="text-center"
+                >
+                    <h4 className="m-3">
+                        El valor filtrado estará en la consola del navegador
+                    </h4>
+                </div>  
+            )}
             
             <button className='btn btn-info w-25 m-2 p-2'>
                 Buscar

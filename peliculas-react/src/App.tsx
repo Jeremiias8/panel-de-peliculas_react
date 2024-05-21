@@ -7,6 +7,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons';
 
+import usuarioIcono from './assets/icons/bx-user.svg';
+import cerrarSesionIcono from './assets/icons/bx-log-out.svg';
+
 import { Header } from './components/Header';
 import { Nav } from './components/Nav';
 import { Aside } from './components/Aside';
@@ -18,11 +21,30 @@ library.add(fas, faTwitter, faFontAwesome);
 function App() {
   
   const [listadoState, setListadoState] = useState([]);
+  const [inicioSesion, setInicioSesion] = useState(false);
 
   return (
     <>
       <div className="layout d-flex flex-column m-2">
 
+        <div>
+
+          <input 
+            type="text"
+            placeholder=''
+            defaultValue={}
+            onChange={}
+            required 
+          />
+          <button
+            onClick={() => inicioDeSesion(true)}
+          >
+            <img src={usuarioIcono} className='m-2 p-2' />
+          </button>
+
+          <img src={cerrarSesionIcono} className='m-2 p-2' />
+
+        </div>
         {/* Header */}
         <Header />
 
@@ -46,7 +68,9 @@ function App() {
         </section>
 
         {/* Aside */}
-        <Aside setListadoState={setListadoState} />
+        <Aside listadoState={listadoState} 
+          setListadoState={setListadoState} 
+        />
 
         <div>
           <a href="https://vitejs.dev" target="_blank">

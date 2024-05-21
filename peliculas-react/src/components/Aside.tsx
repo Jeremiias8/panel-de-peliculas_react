@@ -3,9 +3,9 @@ import { GuardarEnAlmacenamiento } from '../helpers/GuardarEnAlmacenamiento';
 import { Buscador } from './Buscador';
 
 
-export const Aside = ({setListadoState}) => {
+export const Aside = ({listadoState, setListadoState}) => {
 
-    const buscador = "Buscador";
+    {/* const buscador = "Buscador: "; */}
     const tituloComponente = "Añadir película";
     const [value, setValue] = React.useState([
       { 
@@ -102,9 +102,13 @@ export const Aside = ({setListadoState}) => {
     <div className="aside__container d-flex mt-5">
 
         <aside className="lateral d-flex flex-column justify-content-center m-2 p-2">
-          <h2>{buscador}</h2>
+          {/* <h2>{buscador}</h2> */}
 
-          <Buscador />
+          {/* Props de App - Aside - Buscador */}
+          <Buscador 
+            listadoState={listadoState}
+            setListadoState={setListadoState}
+          />
         </aside>
 
         <section className="agregar d-flex flex-column justify-content-center m-2 mt-2 p-2">

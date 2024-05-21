@@ -1,4 +1,6 @@
 
+import editarIcono from '../assets/icons/bx-pencil.svg';
+
 export const Editar = ({
     peli, conseguirPelis, 
     setEditar, setListadoState
@@ -69,7 +71,7 @@ export const Editar = ({
                     className="btn btn-primary rounded-2"
                     value="Modificar" 
                 >
-                    Modificar
+                    <img src={editarIcono} /> Modificar
                 </button>
             
             </div>

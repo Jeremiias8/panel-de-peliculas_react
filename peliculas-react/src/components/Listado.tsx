@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import '../assets/css/styles.css';
 import { Editar } from './Editar';
+import edicionIcono from '../assets/icons/bx-pencil.svg';
+import borradoIcono from '../assets/icons/bx-trash.svg';
 
 export const Listado = ({listadoState, setListadoState}) => {
 
@@ -43,6 +45,9 @@ export const Listado = ({listadoState, setListadoState}) => {
     // actualizar datos en localStorage
     localStorage.setItem("pelis", JSON.stringify(arrayPelisFiltradas));
 
+
+    alert("Elemento: " + id + " borrado exitosamente.");
+
   }
 
   return (
@@ -64,13 +69,15 @@ export const Listado = ({listadoState, setListadoState}) => {
                     onClick={() => setEditar(peli.id)} 
                     className="btn btn-info m-2 p-2"
                   >
-                    Editar
+                    <img src={edicionIcono} 
+                    /> Editar
                   </button>
                   <button
                     onClick={() => borrarPeli(peli.id)} 
                     className='btn btn-secondary m-2 p-2'
                   >
-                    Borrar
+                    <img src={borradoIcono} 
+                    /> Borrar
                   </button>
 
                   {/* formulario de edición */}
