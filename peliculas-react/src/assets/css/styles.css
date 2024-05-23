@@ -114,3 +114,23 @@
     box-shadow: 0px 0px 40px lightblue;
     cursor: pointer;
 }
+
+/* Buscador.tsx */
+.no-mostrar__buscador {
+  margin: 1rem;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+  color: rgb(136, 0, 0);
+}
+
+/* atajos CSS */
+/*
+    width: min(100px, 50px);
+
+    font-size: clamp(12px, 1rem, 28px);
+
+    background-image: repeat-x(url('imagen.png'));
+
+    width: calc(100% - 30px);
+*/

@@ -28,14 +28,15 @@ function App() {
     nickname: ''
   }
 
-  const inicioDeSesion = (e) => {
+  const inicioDeSesion = () => {
 
-    let target = e.target;
-    let valorTarget = target.value;
-    
-    console.log(valorTarget);
-
+    alert("Sesión iniciada");
   };
+
+  const cerradoDeSesion = () => {
+
+    alert("Sesión cerrada");
+  }
 
   return (
     <>
@@ -43,30 +44,31 @@ function App() {
 
         <div>
 
-          <input 
-            type="text"
-            name='usuariosesion'
-            id='usuariosesion'
-            className='m-2 p-2 rounded-2'
-            placeholder='Usuario: '
-            defaultValue={usuarioSesion.nombre}
-            onChange={inicioDeSesion}
-            required 
-          />
-          {usuarioSesion.nombre.length >= 2  && (
-            <span
-              className='m-3 p-3'
-            >Usuario incorrecto</span>
-          )}
-
-          <button
+          <span
             className='m-2 p-2'
-            onClick={() => inicioDeSesion(true)}
+            onClick={() => inicioDeSesion()}
           >
             <img src={usuarioIcono} className='m-2 p-2' />
-          </button>
+          </span>
 
-          <img src={cerrarSesionIcono} className='m-2 p-2' />
+          <span
+            className='m-2 p-2'
+            onClick={() => cerradoDeSesion()}
+          >
+            <img src={cerrarSesionIcono} className='m-2 p-2' />
+          </span>
+
+          {/*
+          {inicioSesion === null && (
+            <h3>
+              Pendiente de entrar
+            </h3>
+          )} {
+            <h3>
+              Inicio exitoso
+            </h3>
+          }
+          */}
 
         </div>
         {/* Header */}

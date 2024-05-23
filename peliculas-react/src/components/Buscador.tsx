@@ -1,10 +1,12 @@
 import { useState } from "react"
+import '../assets/css/styles.css'
 
 export const Buscador = ({
     listadoState, setListadoState
 }) => {
 
     const [busqueda, setBusqueda] = useState('');
+    const [noEncontrado, setNoEncontrado] = useState(false);
 
     const buscador = "Buscador: ";
 
@@ -28,9 +30,13 @@ export const Buscador = ({
         // console.log(busquedaFiltrada);
         
         // si el string de busqueda es menor o igual a 1, que retorne todas las pelis
-        if (busqueda.length <= 1) {
+        if (busqueda.length <= 1 || busquedaFiltrada <= 0) {
                 
             busquedaFiltrada = JSON.parse(localStorage.getItem("pelis"));
+            setNoEncontrado(true);
+        } else {
+
+            setNoEncontrado(false);
         }
 
         console.log(busquedaFiltrada);
@@ -44,6 +50,14 @@ export const Buscador = ({
   return (
     <div className="buscador__container">
         <h3>{buscador} {busqueda}</h3>
+
+        {noEncontrado && (
+            <span
+                className="no-mostrar__buscador m-2 p-2"
+            >
+                No se ha encontrado ninguna coincidencia
+            </span>
+        )}
 
         <form>
 
